@@ -1,0 +1,18 @@
+Q: Which WMI class did the attacker use to retrieve model and manufacturer information for virtualization detection?
+A: Win32_ComputerSystem
+
+Q: Which WMI query did the attacker execute to retrieve the current temperature value of the machine
+A: SELECT * FROM MSAcpi_ThermalZoneTemperature
+
+Q: The attacker loaded a PowerShell script to detect virtualization. What is the function name of the script?
+A: Check-VM
+
+Q: The script enumerates the registry for virtualization __services__. Which key is being enumerated?
+A: HKLM:\SYSTEM\ControlSet001\Services
+
+Q: When identifying the presence of VirtualBox, which two processes are being checked for existing? (ServiceA.exe:ServiceB.exe)
+A: vboxservice.exe:vboxtray.exe
+
+Q: The VM detection script prints any detection with the prefix 'This is a'. Which two virtualization platforms did the script detect? (ServiceA:ServiceB)
+A: Hyper-V:Vmware
+

@@ -1,0 +1,15 @@
+Q: The attacker disabled LSA protection on the compromised host by modifying a registry key. What is the full path of that registry key?
+A: HKLM\SYSTEM\CurrentControlSet\Control\LSA
+
+Q: Which PowerShell cmdlet controls Windows Defender?
+A: Set-MpPreference
+
+Q: The attacker loaded an AMSI patch written in PowerShell. Which function __in__ the amsi.dll is being patched by the script to effectively disable AMSI? Hint: The script in question imports 'kernel32.dll'
+A: AmsiScanBuffer
+
+Q: Which command did the attacker use to restart the machine in Safe Mode, (with arguments, without ".exe")?
+A: bcdedit /set safeboot network
+
+Q: Which PowerShell command did the attacker use to disable PowerShell command history logging?
+A: Set-PSReadlineOption -HistorySaveStyle SaveNothing
+

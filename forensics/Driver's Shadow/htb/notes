@@ -1,0 +1,29 @@
+Q: What is the name of the backdoor udev Rule (ex:10-name.rules)
+A: 99-volnaya.rules
+
+Q: What is the hostname the rootkit connects to
+A: callback.cnc2811.volnaya.htb
+
+Q: What is the XOR key used (ex: 0011aabb)
+A: 881ba50d42a430791ca2d9ce0630f5c9
+
+Q: What __SYSCALLS__ are hooked with ftrace, sorted via SYSCALL number (ex: read:write:open)
+A: kill:getdents64
+
+Q: What is the name of the kernel module
+A: volnaya_xb127
+
+Q: What string must be contained in a file in order to be hidden
+A: volnaya
+
+Q: What owner UID and GID membership will make the file hidden (UID:GID)
+A: 1821:1992
+
+Q: There is one bash process that is hidden in __USERSPACE__, what is its PID
+A: 2957
+
+Q: What is the resolved IP of the attacker
+A: 16.171.55.6
+
+Q: What is the address of __x64_sys_kill, __x64__sys_getdents64 (ex: kill:getdents64)
+A: 0xffffb88b6bf0:0xffffb8b7c770

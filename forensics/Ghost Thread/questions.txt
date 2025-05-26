@@ -1,0 +1,20 @@
+Q: What process injection technique is being used? Hint: T***** L**** S******
+A: Thread Local Storage
+
+Q: Which Win32 API was used to take snapshots of all processes and threads on the system?
+A: CreateToolhelp32Snapshot
+
+Q: Which process is the attacker's binary attempting to locate for payload injection?
+A: notepad.exe
+
+Q: Whar is the process IP of the identified process?
+A: 16224
+
+Q: What is the size of the shellcode?
+A: 511
+
+Q: Which Win32 API was used to execute the injected payload in the identified process?
+A: CreateRemoteThread
+
+Q: The injection method used by the attacker executes before the main() function is called. Which Win32 API is responsible for terminating the program before main() runs?
+A: ExitProcess

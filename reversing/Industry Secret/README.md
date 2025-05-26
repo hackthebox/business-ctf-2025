@@ -1,0 +1,95 @@
+<img src="../../assets/banner.png" style="zoom: 80%;" align=center />
+
+<img src="../../assets/htb.png" style="zoom: 80%;" align='left' /><font size="5">Industry Secret</font>
+
+  16<sup>th</sup> 5 2025
+
+  Prepared By: Leeky
+
+  Challenge Author: Leeky
+
+  Difficulty: <font color=green>Easy</font>
+
+  Classification: Official
+
+
+
+
+
+
+# Synopsis
+
+Industry Secret is an Easy Reversing challenge. Players will reverse engineer a backdoor in a UART Zephy OS binary.
+
+## Skills Required
+    - Decompiler usage
+## Skills Learned
+    - Embedded firmware reversing
+    - Identifying a backdoor
+
+# Solution
+
+The challenge is a Zephyr OS ELF binary for a nRF52 board.
+Luckily for us the binary comes with debug symbols so reversing it a pretty straightforward process.
+
+We find `main` and the entire logic of the challenge presents itself to us:
+
+![](assets/logic.png)
+
+The program wants either "1", "2", or "secretpassword" as input. After entering "secretpassword" when we enter a 20 character string it gets encoded and compared against a hardcoded buffer.
+If our input matches said buffer the backdoor is enabled (and we win).
+
+The `encode` function is relatively simple:
+- it first shuffles the values of the character
+- then based on the index it shuffles the bits in the character
+- at the end it applies, based on the index, an offset to the character
+
+Extracting the compare buffer we get `[244, 107, 240, 23, 32, 75, 210, 98, 154, 177, 139, 209, 119, 241, 102, 31, 41, 180, 11, 235]` and by inverting the encoding process we can get the backdoor string (which is our flag):
+
+```python
+shuffleMap = {0: 0, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7, 8: 8, 9: 9, 10: 10, 11: 11, 12: 12, 13: 13, 14: 14, 15: 15, 16: 16, 17: 17, 18: 18, 19: 19, 20: 20, 21: 21, 22: 22, 23: 23, 24: 24, 25: 25, 26: 26, 27: 27, 28: 28, 29: 29, 30: 30, 31: 31, 32: 32, 33: 66, 34: 50, 35: 121, 36: 79, 37: 94, 38: 63, 39: 51, 40: 91, 41: 49, 42: 36, 43: 103, 44: 53, 45: 42, 46: 44, 47: 74, 48: 75, 49: 73, 50: 52, 51: 122, 52: 115, 53: 111, 54: 119, 55: 112, 56: 126, 57: 72, 58: 87, 59: 84, 60: 40, 61: 57, 62: 41, 63: 90, 64: 85, 65: 116, 66: 76, 67: 107, 68: 92, 69: 55, 70: 34, 71: 59, 72: 114, 73: 120, 74: 98, 75: 124, 76: 82, 77: 81, 78: 110, 79: 80, 80: 93, 81: 33, 82: 71, 83: 96, 84: 109, 85: 68, 86: 43, 87: 101, 88: 39, 89: 62, 90: 123, 91: 89, 92: 104, 93: 99, 94: 47, 95: 97, 96: 48, 97: 67, 98: 78, 99: 56, 100: 113, 101: 61, 102: 125, 103: 65, 104: 60, 105: 118, 106: 83, 107: 88, 108: 38, 109: 102, 110: 64, 111: 105, 112: 95, 113: 117, 114: 54, 115: 46, 116: 45, 117: 69, 118: 35, 119: 86, 120: 108, 121: 106, 122: 58, 123: 37, 124: 70, 125: 100, 126: 77, 127: 127, 128: 128, 129: 129, 130: 130, 131: 131, 132: 132, 133: 133, 134: 134, 135: 135, 136: 136, 137: 137, 138: 138, 139: 139, 140: 140, 141: 141, 142: 142, 143: 143, 144: 144, 145: 145, 146: 146, 147: 147, 148: 148, 149: 149, 150: 150, 151: 151, 152: 152, 153: 153, 154: 154, 155: 155, 156: 156, 157: 157, 158: 158, 159: 159, 160: 160, 161: 161, 162: 162, 163: 163, 164: 164, 165: 165, 166: 166, 167: 167, 168: 168, 169: 169, 170: 170, 171: 171, 172: 172, 173: 173, 174: 174, 175: 175, 176: 176, 177: 177, 178: 178, 179: 179, 180: 180, 181: 181, 182: 182, 183: 183, 184: 184, 185: 185, 186: 186, 187: 187, 188: 188, 189: 189, 190: 190, 191: 191, 192: 192, 193: 193, 194: 194, 195: 195, 196: 196, 197: 197, 198: 198, 199: 199, 200: 200, 201: 201, 202: 202, 203: 203, 204: 204, 205: 205, 206: 206, 207: 207, 208: 208, 209: 209, 210: 210, 211: 211, 212: 212, 213: 213, 214: 214, 215: 215, 216: 216, 217: 217, 218: 218, 219: 219, 220: 220, 221: 221, 222: 222, 223: 223, 224: 224, 225: 225, 226: 226, 227: 227, 228: 228, 229: 229, 230: 230, 231: 231, 232: 232, 233: 233, 234: 234, 235: 235, 236: 236, 237: 237, 238: 238, 239: 239, 240: 240, 241: 241, 242: 242, 243: 243, 244: 244, 245: 245, 246: 246, 247: 247, 248: 248, 249: 249, 250: 250, 251: 251, 252: 252, 253: 253, 254: 254, 255: 255}
+
+def decode_flag(flag):
+    lst2 = []
+    for i in range(len(flag)):
+        lstEntry = flag[i]
+        if (i % 0xb) == 0: lstEntry += 0x62
+        elif (i % 0xb) == 1: lstEntry += 0x2
+        elif (i % 0xb) == 2: lstEntry += 0x56
+        elif (i % 0xb) == 3: lstEntry += 0xf6
+        elif (i % 0xb) == 4: lstEntry += 0x46
+        elif (i % 0xb) == 5: lstEntry += 0xc
+        elif (i % 0xb) == 6: lstEntry += 0x99
+        elif (i % 0xb) == 7: lstEntry += 0x14
+        elif (i % 0xb) == 8: lstEntry += 0x85
+        elif (i % 0xb) == 9: lstEntry += 0xab
+        elif (i % 0xb) == 10: lstEntry += 0xba
+        while lstEntry >= 0x100:
+            lstEntry -= 0x100
+        lst2.append(lstEntry)
+    lst = []
+    tuples = [(2, 5), (6, 0), (3, 1), (5, 3), (4, 2)]
+    for ind in range(len(lst2)):
+        i = lst2[ind]
+        x, y = tuples[ind%len(tuples)]
+        t0 = (1<<x)&0xff
+        t1 = (1<<y)&0xff
+        v = (i & (~(t0 | t1))) | (((i & t0) >> x) << y) | (((i & t1) >> y) << x)
+        lst.append(v)
+    decoded = []
+    unshuffleMap = {}
+    for i in range(0x100):
+        unshuffleMap[shuffleMap[i]] = i
+    for i in lst:
+        decoded.append(unshuffleMap[i])
+    return bytes(decoded)
+    
+print(decode_flag([244, 107, 240, 23, 32, 75, 210, 98, 154, 177, 139, 209, 119, 241, 102, 31, 41, 180, 11, 235]))
+```
+
+
+
+With a simulation framework like [renode](https://renode.io/) we can verify the flag (without the hardware) as well.
+After entering the "secretpassword" and flag the backdoor is enabled we can shutdown the device:
+
+![](assets/renode.png)

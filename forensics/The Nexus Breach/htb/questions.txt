@@ -1,0 +1,30 @@
+Q: Which credentials has been used to login on the platform? (e.g. username:password)
+A: admin:dL4zyVJ1y8UhT1hX1m
+
+Q: Which Nexus OSS version is in use? (e.g. 1.10.0-01)
+A: 2.15.1-02
+
+Q: The attacker created a new user for persistence. Which credentials has been set? (e.g. username:password)
+A: adm1n1str4t0r:46vaGuj566
+
+Q: One core library written in Java has been tampered and replaced by a malicious one. Which is its package name? (e.g. com.company.name)
+A: com.phoenix.toolkit
+
+Q: The tampered library contains encrypted communication logic. What is the secret key used for session encryption? (e.g. Secret123)
+A: vuvtuYXvHYvW"#vu
+
+Q: Which is the name of the function that manages the (AES) string decryption process? (e.g. aVf41)
+A: uJtXq5
+
+Q: Which is the system command that triggered the reverse shell execution for this session running the tampered JAR? (e.g. "java .... &")
+A: java -jar /sonatype-work/storage/snapshots/com/phoenix/toolkit/1.0/PhoenixCyberToolkit-1.0.jar &
+
+Q: Which is the first executed command in the encrypted reverse shell session? (e.g. whoami)
+A: uname -a
+
+Q: Which other legit user has admin permissions on the Nexus instance (excluding "adm1n1str4t0r" and "admin")? (e.g. john_doe)
+A: john_smith
+
+Q: The attacker wrote something in a specific file to maintain persistence, which is the full path? (e.g. /path/file)
+A: /sonatype-work/storage/.phoenix-updater
+
