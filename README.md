@@ -30,6 +30,18 @@
 | Forensics | [Ghost Thread](<forensics/Ghost Thread>) | Post-breach attack where malicious code injected into a legitimate process.  | ⭐⭐ |
 | Forensics | [The Nexus Breach](<forensics/The Nexus Breach>) | PCAP file analysis containing network traffic related to an attack that targets a Nexus OSS instance. | ⭐⭐⭐ |
 | Forensics | [Driver's Shadow](<forensics/Driver's Shadow>) | Identification and analysis of a memory only rootkit, loaded by a malicious udev backdoor rule. | ⭐⭐⭐⭐ |
+| Hardware | [Echos Of Authority](<hardware/EchoesOfAuthority>) | Extract DTMF tones from a VOIP packet capture | ⭐⭐ |
+| Hardware | [Volnayan Whisper](<hardware/VolnayanWhisper>) | Extract PDU-formatted SMS from USB traffic | ⭐⭐ |
+| Hardware | [Sky Recon](<hardware/Sky Recon>) | Exploiting MAVLink protocol | ⭐⭐⭐ |
+| Hardware | [Volnatek Motors](<hardware/VolnatekMotors>) | Smart car protocol exploitation | ⭐⭐⭐ |
+| Hardware | [PhantomGate](<hardware/PhantomGate>) | Reverse engineering firmware and cryptographic primitives | ⭐⭐⭐⭐ |
+| Blockchain | [Enlistment](<blockchain/Enlistment>) | Compute an expected proof hash | ⭐ |
+| Blockchain | [Spectral](<blockchain/Spectral>) | Exploit incorrect reentrancy guards | ⭐⭐ |
+| Blockchain | [Blockout](<blockchain/Blockout>) | TODO | ⭐⭐⭐ |
+| ICS | [Whispers](<ics/whispers>) | Extracting Wireshark TCP streams | ⭐ |
+| ICS | [Floody](<ics/floody>) | Understanding OPC UA protocol basics | ⭐⭐ |
+| ICS | [Heat Plan](<ics/heatplan>) | Manipulating PLC data | ⭐⭐ |
+| ICS | [Gridcryp](<ics/Gridcryp>) | Manipulating ICS variables with encryption | ⭐⭐⭐ |
 | AI/ML | [External Affairs](<aiml/External Affairs>) | prompt injection to manipulate AI response | ⭐⭐ |
 | AI/ML | [Loyalty Survey](<aiml/Loyalty Survey>) | Agentic AI Hijacking with prompt injection | ⭐⭐ |
 | AI/ML | [TrynaSob Ransomware](<aiml/TrynaSob Ransomware>) | prompt injection to leak prompt instructions | ⭐⭐ |

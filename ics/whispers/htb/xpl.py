@@ -1,0 +1,5 @@
+#!/usr/bin/python3
+
+FLAG = bytes.fromhex("4854427b556e6c30636b316e675f7468335f76336e74735f30665f6431357275707431306e7d")
+
+print(f"FLAG: {FLAG.decode()}")
